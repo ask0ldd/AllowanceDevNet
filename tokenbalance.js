@@ -55,11 +55,11 @@ async function setAllowance() {
 
   const amount = parseUnits('20000', 18) // Adjust the decimal places if needed
 
-  const data = encodeFunctionData({
+  /*const data = encodeFunctionData({
     abi,
     functionName: 'approve',
     args: [spenderAddress, amount]
-  })
+  })*/
 
   const account = privateKeyToAccount("0xc526ee95bf44d8fc405a158bb884d9d1238d99f0612e9f33d006bb0789009aaa")
 
@@ -70,7 +70,8 @@ async function setAllowance() {
       abi,
       functionName: 'approve',
       args: [spenderAddress, amount] // Use parsed amount
-    })
+    }),
+    chain: client.chain
   })
 
   const serializedTransaction = await account.signTransaction({...request})
